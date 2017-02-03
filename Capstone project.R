@@ -1,6 +1,8 @@
 #Read in consumer complaint data. 
 #Original source: 
 # https://catalog.data.gov/dataset/consumer-complaint-database#topic=consumer_navigation
+setwd("C:/Users/Owner/Documents")
+
 consumer_complaints<-read.csv("Consumer_Complaints.csv",stringsAsFactors = FALSE)
 head(consumer_complaints)
 str(consumer_complaints)
@@ -129,9 +131,52 @@ RankedBanksByNumBranch_12_31_15<-read.csv('RankedBanksByNumBranch 12-31-15.csv',
 RankedBanksByNumBranch_3_31_16<-read.csv('RankedBanksByNumBranch 3-31-16.csv',stringsAsFactors=FALSE)
 RankedBanksByNumBranch_6_30_16<-read.csv('RankedBanksByNumBranch 6-30-16.csv',stringsAsFactors=FALSE)
 RankedBanksByNumBranch_9_30_16<-read.csv('RankedBanksByNumBranch 9-30-16.csv',stringsAsFactors=FALSE)
-#Not working. Here's the error message: 
-#Error in file(file, "rt") : cannot open the connection
-#In addition: Warning message:
-#  In file(file, "rt") :
-#  cannot open file 'RankedBanksByNumBranch 9-30-16.csv': No such file or directory
 
+#Stack the ranked (by number of branches) banks into one set
+all_RankedBanksByNumBranch <- rbind(RankedBanksByNumBranch_12_31_11,
+                                    RankedBanksByNumBranch_3_31_12,
+                                    RankedBanksByNumBranch_6_30_12,
+                                    RankedBanksByNumBranch_9_30_12,
+                                    RankedBanksByNumBranch_12_31_12,
+                                    RankedBanksByNumBranch_3_31_13,
+                                    RankedBanksByNumBranch_6_30_13,
+                                    RankedBanksByNumBranch_9_30_13,
+                                    RankedBanksByNumBranch_12_31_13,
+                                    RankedBanksByNumBranch_3_31_14,
+                                    RankedBanksByNumBranch_6_30_14,
+                                    RankedBanksByNumBranch_9_30_14,
+                                    RankedBanksByNumBranch_12_31_14,
+                                    RankedBanksByNumBranch_3_31_15,
+                                    RankedBanksByNumBranch_6_30_15,
+                                    RankedBanksByNumBranch_9_30_15,
+                                    RankedBanksByNumBranch_12_31_15,
+                                    RankedBanksByNumBranch_3_31_16,
+                                    RankedBanksByNumBranch_6_30_16,
+                                    RankedBanksByNumBranch_9_30_16)
+rm(RankedBanksByNumBranch_12_31_11,
+   RankedBanksByNumBranch_3_31_12,
+   RankedBanksByNumBranch_6_30_12,
+   RankedBanksByNumBranch_9_30_12,
+   RankedBanksByNumBranch_12_31_12,
+   RankedBanksByNumBranch_3_31_13,
+   RankedBanksByNumBranch_6_30_13,
+   RankedBanksByNumBranch_9_30_13,
+   RankedBanksByNumBranch_12_31_13,
+   RankedBanksByNumBranch_3_31_14,
+   RankedBanksByNumBranch_6_30_14,
+   RankedBanksByNumBranch_9_30_14,
+   RankedBanksByNumBranch_12_31_14,
+   RankedBanksByNumBranch_3_31_15,
+   RankedBanksByNumBranch_6_30_15,
+   RankedBanksByNumBranch_9_30_15,
+   RankedBanksByNumBranch_12_31_15,
+   RankedBanksByNumBranch_3_31_16,
+   RankedBanksByNumBranch_6_30_16,
+   RankedBanksByNumBranch_9_30_16)
+
+#Reformat the dates
+all_RankedBanksByNumBranch$Date2<-as.Date(all_RankedBanksByNumBranch$Date,format="%m/%d/%Y")
+head(all_RankedBanksByNumBranch)
+str(all_RankedBanksByNumBranch)
+all_RankedBanksByNumBranch2<-subset(all_RankedBanksByNumBranch,select=-Date)
+rm(all_RankedBanksByNumBranch)
