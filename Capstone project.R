@@ -9,8 +9,8 @@ str(consumer_complaints)
 
 library(dplyr)
 
-min(consumer_complaints$Date.received)#1/1/12
-max(consumer_complaints$Date.received)#9/9/16
+min(consumer_complaints$Date.received)#min date is 1/1/12
+max(consumer_complaints$Date.received)#max date is 9/9/16
 
 #Next read in the equity capital information for the banks. The purpose is to 
 #assign a size to the banks so that we can scale their complaint counts accordingly
@@ -180,3 +180,48 @@ head(all_RankedBanksByNumBranch)
 str(all_RankedBanksByNumBranch)
 all_RankedBanksByNumBranch2<-subset(all_RankedBanksByNumBranch,select=-Date)
 rm(all_RankedBanksByNumBranch)
+
+install.packages("stringdist")
+library(stringdist)
+
+#We will compare every bank name in the set of banks from the complaints data to the bank names in the
+#set of bank sizes. We will keep every pair of bank names that is "close", that is, every 
+#pair of bank names with string distance <= threshold. 
+
+distances <-data.frame(bank1=character(),bank2=character(),cleanedUpBank1=character(),
+                       cleanedUpBank2=character(), d=integer(),stringsAsFactors = FALSE)
+threshold<-0.2
+for (i in 1:length(unique_banks_from_complaints)){
+  for (j in 1:length(unique_banks_from_ranked_banks)){
+#Here we remove words from the bank names that give no information about the bank's identity. 
+#These words are sometimes called "stop words"
+    CleanedUpBankName1<-gsub(' BANK','',toupper(unique_banks_from_complaints[i]))
+    CleanedUpBankName1<-gsub(' INC.','',CleanedUpBankName1)
+    CleanedUpBankName1<-gsub(' BANCO','',CleanedUpBankName1)
+    CleanedUpBankName1<-gsub(' FINANCIAL','',CleanedUpBankName1)
+    CleanedUpBankName1<-gsub(' FINANCE','',CleanedUpBankName1)
+    CleanedUpBankName1<-gsub(' CAPITAL','',CleanedUpBankName1) 
+    CleanedUpBankName1<-gsub(' SERVICES','',CleanedUpBankName1)
+    CleanedUpBankName2<-gsub(' BANK','',toupper(unique_banks_from_ranked_banks[j]))
+    CleanedUpBankName2<-gsub(' INC.','',CleanedUpBankName2)
+    CleanedUpBankName2<-gsub(' BANCO','',CleanedUpBankName2)
+    CleanedUpBankName2<-gsub(' FINANCIAL','',CleanedUpBankName2)
+    CleanedUpBankName2<-gsub(' FINANCE','',CleanedUpBankName2)
+    CleanedUpBankName2<-gsub(' CAPITAL','',CleanedUpBankName2)
+    CleanedUpBankName2<-gsub(' SERVICES','',CleanedUpBankName2)
+  
+  #Distance between 2 bank names is defined as longest common substring distance, 
+  #normalized by length of cleaned up bank name
+    dist<-stringdist(CleanedUpBankName1,CleanedUpBankName2,method="lcs")/nchar(CleanedUpBankName1)
+
+
+    if (dist <= threshold){
+      newrow<-data.frame(bank1=unique_banks_from_complaints[i],bank2=unique_banks_from_ranked_banks[j],
+                       cleanedUpBank1=CleanedUpBankName1,cleanedUpBank2=CleanedUpBankName2,d=dist, 
+                       stringsAsFactors = FALSE)
+      distances<-rbind(distances,newrow)
+      }
+  }
+}
+#There were only about 100 pairs of matched names out of 4060 unique bank names from the complaints data.
+#This suggest to me that the two sets of bank names actually have a very small intersection. 
