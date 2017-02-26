@@ -87,6 +87,9 @@ str(all_ranked_banks)
 all_ranked_banks2<-subset(all_ranked_banks,select=-Date)
 rm(all_ranked_banks)
 
+write.csv(all_ranked_banks2, file = "banks_ranked_by_equity_capital.csv")
+
+
 #Extract unique bank names. Bank names will be merge keys. We want to experiment with
 #some "fuzzy" merge techniques. 
 unique_banks_from_complaints<-unique(consumer_complaints$Company)
@@ -225,3 +228,9 @@ for (i in 1:length(unique_banks_from_complaints)){
 }
 #There were only about 100 pairs of matched names out of 4060 unique bank names from the complaints data.
 #This suggest to me that the two sets of bank names actually have a very small intersection. 
+
+#take a random sample of size 50000 from a dataset mydata 
+#sample without replacement
+consumer_complaints_samp50000 <- consumer_complaints[sample(1:nrow(consumer_complaints), 
+                                                     50000, replace=FALSE),]
+write.csv(consumer_complaints_samp50000, file = "consumer_complaints_samp50000.csv")
