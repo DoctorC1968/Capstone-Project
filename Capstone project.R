@@ -95,10 +95,10 @@ str(all_ranked_banks2)#133880 obs
 #write.csv(all_ranked_banks2, file = "banks_ranked_by_equity_capital.csv")
 max(all_ranked_banks2$Rank) #7366
 
-maxrank<-100
+maxrank<-500
 
 all_ranked_banks2_top<-all_ranked_banks2[all_ranked_banks2$Rank<=maxrank,]
-str(all_ranked_banks2_top)#2000 obs
+str(all_ranked_banks2_top)#10000 obs
 
 #Extract unique bank names. Bank names will be merge keys. We want to experiment with
 #some "fuzzy" merge techniques. 
@@ -107,7 +107,7 @@ length(unique_banks_from_complaints)#1130
 unique_banks_from_complaints[1:20]
 
 unique_banks_from_ranked_banks_top<-unique(all_ranked_banks2_top$Bank.Name)
-length(unique_banks_from_ranked_banks_top)#136 banks
+length(unique_banks_from_ranked_banks_top)#656 banks
 unique_banks_from_ranked_banks_top
 
 #Create the Cartesian product of the two sets of unique bank names. When we get that 
@@ -201,8 +201,8 @@ library(stringdist)
 
 distances <-data.frame(bank1=character(),bank2=character(),cleanedUpBank1=character(),
                        cleanedUpBank2=character(), d=integer(),stringsAsFactors = FALSE)
-threshold<-0.42
-
+#threshold<-0.42
+threshold<-0.37
 for (i in 1:length(unique_banks_from_complaints)){
   for (j in 1:length(unique_banks_from_ranked_banks_top)){
 #Here we remove words from the bank names that give no information about the bank's identity. 
@@ -238,9 +238,12 @@ for (i in 1:length(unique_banks_from_complaints)){
     CleanedUpBankName1<-gsub(' PUERTO RICO','',CleanedUpBankName1)
     CleanedUpBankName1<-gsub('PUERTO RICO ','',CleanedUpBankName1) 
     CleanedUpBankName1<-gsub(' OF THE ','',CleanedUpBankName1) 
-    CleanedUpBankName1<-gsub(' OF ','',CleanedUpBankName1) 
+    CleanedUpBankName1<-gsub(' OF ',' ',CleanedUpBankName1) 
     CleanedUpBankName1<-gsub(' THE ','',CleanedUpBankName1)
     CleanedUpBankName1<-gsub(' AND ','',CleanedUpBankName1) 
+    CleanedUpBankName1<-gsub('NATIONAL','',CleanedUpBankName1) 
+    CleanedUpBankName1<-gsub('COMMUNITY','',CleanedUpBankName1) 
+    CleanedUpBankName1<-gsub('ASSOCIATION','',CleanedUpBankName1) 
     
     CleanedUpBankName2<-gsub(' BANKS ',' ',toupper(unique_banks_from_ranked_banks_top[j]))
     CleanedUpBankName2<-gsub('BANKS ','',CleanedUpBankName2)
@@ -273,17 +276,19 @@ for (i in 1:length(unique_banks_from_complaints)){
     CleanedUpBankName2<-gsub(' PUERTO RICO','',CleanedUpBankName2)
     CleanedUpBankName2<-gsub('PUERTO RICO ','',CleanedUpBankName2) 
     CleanedUpBankName2<-gsub(' OF THE ','',CleanedUpBankName2)
-    CleanedUpBankName2<-gsub(' OF ','',CleanedUpBankName2) 
+    CleanedUpBankName2<-gsub(' OF ',' ',CleanedUpBankName2) 
     CleanedUpBankName2<-gsub(' THE ','',CleanedUpBankName2)
     CleanedUpBankName2<-gsub(' AND ','',CleanedUpBankName2) 
-    
+    CleanedUpBankName2<-gsub('NATIONAL','',CleanedUpBankName2)
+    CleanedUpBankName2<-gsub('COMMUNITY','',CleanedUpBankName2)
+    CleanedUpBankName2<-gsub('ASSOCIATION','',CleanedUpBankName2)
   #Distance between 2 bank names is defined as longest common substring distance, 
   #normalized by length of cleaned up bank name
     if (max(nchar(CleanedUpBankName1),nchar(CleanedUpBankName2))<=3){
-      dist<-stringdist(CleanedUpBankName1,CleanedUpBankName2,method="lv")
+     dist<-stringdist(CleanedUpBankName1,CleanedUpBankName2,method="lv")
     }
     else if ((regexpr("AMERICA",CleanedUpBankName1)[1]>0 & regexpr("COMERICA",CleanedUpBankName2)[1]>0)|
-             (regexpr("COMERICA",CleanedUpBankName1[1]>0)& regexpr("AMERICA",CleanedUpBankName2)[1]>0)){
+            (regexpr("COMERICA",CleanedUpBankName1[1]>0)& regexpr("AMERICA",CleanedUpBankName2)[1]>0)){
       dist<-threshold+1}
     else {
       dist<-stringdist(CleanedUpBankName1,CleanedUpBankName2,method="lv")/min(nchar(CleanedUpBankName1),nchar(CleanedUpBankName2))
