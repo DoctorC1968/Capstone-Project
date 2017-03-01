@@ -1,96 +1,127 @@
 "","bank1","bank2","cleanedUpBank1","cleanedUpBank2","d"
 "1","Wells Fargo & Company","Wells Fargo Bank","WELLS FARGO  ","WELLS FARGO",0.181818181818182
-"2","Santander Bank US","Santander Bank, N.A.","SANTANDER US","SANTANDER NA",0.166666666666667
-"3","JPMorgan Chase & Co.","JPMorgan Chase Bank","JPMORGAN CHASE ","JPMORGAN CHASE",0.0714285714285714
-"4","First Tennessee Bank","First Tennessee Bank","TENNESSEE","TENNESSEE",0
-"5","People's United Bank","People's United Bank","PEOPLE'S UNITED","PEOPLE'S UNITED",0
-"6","Ally Financial Inc.","Ally Bank","ALLY ","ALLY",0.25
-"7","Synchrony Financial","Synchrony Bank","SYNCHRONY ","SYNCHRONY",0.111111111111111
-"8","Regions Financial Corporation","Regions Bank","REGIONS  ","REGIONS",0.285714285714286
-"9","TCF National Bank","City National Bank","TCF NATIONAL","CITY NATIONAL",0.333333333333333
-"10","TCF National Bank","Zions First National Bank","TCF NATIONAL","ZIONS NATIONAL",0.416666666666667
-"11","TCF National Bank","TCF National Bank","TCF NATIONAL","TCF NATIONAL",0
-"12","TCF National Bank","Old National Bank","TCF NATIONAL","OLD NATIONAL",0.25
-"13","Citibank","Citibank","CITI","CITI",0
-"14","Citibank","CIT Bank","CITI","CIT",0.333333333333333
+"2","Wells Fargo & Company","Wells Fargo Financial National Bank","WELLS FARGO  ","WELLS FARGO  ",0
+"3","Wells Fargo & Company","Wells Fargo Bank, Ltd.","WELLS FARGO  ","WELLS FARGO LTD",0.230769230769231
+"4","Santander Bank US","Santander Bank, N.A.","SANTANDER US","SANTANDER NA",0.166666666666667
+"5","JPMorgan Chase & Co.","JPMorgan Chase Bank","JPMORGAN CHASE ","JPMORGAN CHASE",0.0714285714285714
+"6","First Tennessee Bank","First Tennessee Bank","TENNESSEE","TENNESSEE",0
+"7","People's United Bank","People's United Bank","PEOPLE'S UNITED","PEOPLE'S UNITED",0
+"8","Ally Financial Inc.","Ally Bank","ALLY ","ALLY",0.25
+"9","Synchrony Financial","Synchrony Bank","SYNCHRONY ","SYNCHRONY",0.111111111111111
+"10","Regions Financial Corporation","Regions Bank","REGIONS  ","REGIONS",0.285714285714286
+"11","TCF National Bank","TCF National Bank","TCF ","TCF ",0
+"12","Citibank","Citibank","CITI","CITI",0
+"13","Citibank","CIT Bank","CITI","CIT",0.333333333333333
+"14","Citibank","City Bank","CITI","CITY",0.25
 "15","Citibank","CIT BANK","CITI","CIT",0.333333333333333
 "16","Bank of the West","Bank of the West","OFWEST","OFWEST",0
 "17","Bank of the West","OneWest Bank","OFWEST","ONEWEST",0.333333333333333
 "18","SunTrust Banks, Inc.","SunTrust Bank","SUNTRUST","SUNTRUST",0
-"19","BMO Harris","BMO Harris Bank","BMO HARRIS","BMO HARRIS",0
-"20","Capital One","Capital One"," ONE"," ONE",0
-"21","FirstMerit Bank","Firstmerit Bank","FIRSTMERIT","FIRSTMERIT",0
-"22","Fifth Third Financial Corporation","Fifth Third Bank","FIFTH THIRD  ","FIFTH THIRD",0.181818181818182
-"23","The Huntington National Bank","The Huntington National Bank","THE HUNTINGTON NATIONAL","THE HUNTINGTON NATIONAL",0
-"24","Union Bank","Union Bank","UNION","UNION",0
-"25","BankUnited","BankUnited","UNITED","UNITED",0
-"26","Morgan Stanley","Morgan Stanley Bank","MORGAN STANLEY","MORGAN STANLEY",0
-"27","BNY Mellon","BNY Mellon","BNY MELLON","BNY MELLON",0
-"28","Astoria Bank","Astoria Bank","ASTORIA","ASTORIA",0
-"29","New York Community Bank","New York Community Bank","NEW YORK COMMUNITY","NEW YORK COMMUNITY",0
-"30","Comerica","Comerica Bank","COMERICA","COMERICA",0
-"31","Comerica","Commerce Bank","COMERICA","COMMERCE",0.375
-"32","USAA Savings","USAA Savings Bank","USAA SAVINGS","USAA SAVINGS",0
-"33","First National Bank of Omaha","First National Bank of Omaha","NATIONALOMAHA","NATIONALOMAHA",0
-"34","First Citizens","First-Citizens Bank & Trust Company","FIRST","FIRST- ",0.4
-"35","First Citizens","Firstbank of Puerto Rico","FIRST","FIRSTOF",0.4
-"36","First Citizens","Frost Bank","FIRST","FROST",0.4
-"37","Discover","Discover Bank","DISCOVER","DISCOVER",0
-"38","Banco Popular de Puerto Rico","Banco Popular de Puerto Rico"," POPULAR DE"," POPULAR DE",0
-"39","Commerce Bank","Comerica Bank","COMMERCE","COMERICA",0.375
-"40","Commerce Bank","Commerce Bank","COMMERCE","COMMERCE",0
-"41","E*Trade Bank","E*TRADE Bank","E*TRADE","E*TRADE",0
-"42","State Farm Bank","State Farm Bank, F.S.B.","STATE FARM","STATE FARM FSB",0.4
-"43","BancorpSouth Bank","BancorpSouth Bank","RPSOUTH","RPSOUTH",0
-"44","Valley National Bank","City National Bank","VALLEY NATIONAL","CITY NATIONAL",0.384615384615385
-"45","Valley National Bank","Valley National Bank","VALLEY NATIONAL","VALLEY NATIONAL",0
-"46","Valley National Bank","Old National Bank","VALLEY NATIONAL","OLD NATIONAL",0.416666666666667
-"47","Frost Bank","Frost Bank","FROST","FROST",0
-"48","UMB Bank","UMB Bank","UMB","UMB",0
-"49","Associated Bank","Associated Bank","ASSOCIATED","ASSOCIATED",0
-"50","FirstBank","First-Citizens Bank & Trust Company","FIRST","FIRST- ",0.4
-"51","FirstBank","Firstbank of Puerto Rico","FIRST","FIRSTOF",0.4
-"52","FirstBank","Frost Bank","FIRST","FROST",0.4
-"53","East West Bank","East West Bank","EAST WEST","EAST WEST",0
-"54","Webster Bank","Webster Bank","WEBSTER","WEBSTER",0
-"55","First Hawaiian Bank","First Hawaiian Bank","HAWAIIAN","HAWAIIAN",0
-"56","Washington Federal","Washington Federal","WASHINGTON FEDERAL","WASHINGTON FEDERAL",0
-"57","Sallie Mae","Sallie Mae Bank","SALLIE MAE","SALLIE MAE",0
-"58","Whitney Bank","Whitney Bank","WHITNEY","WHITNEY",0
-"59","Charles Schwab Bank","Charles Schwab Bank","CHARLES SCHWAB","CHARLES SCHWAB",0
-"60","Synovus Bank","Synovus Bank","SYNOVUS","SYNOVUS",0
-"61","Arvest Bank","Arvest Bank","ARVEST","ARVEST",0
-"62","Banco Santander Puerto Rico","Santander Bank, N.A."," SANTANDER","SANTANDER NA",0.4
-"63","Investors Bank","Investors Bank","INVESTORS","INVESTORS",0
-"64","EverBank","EverBank","EVER","EVER",0
-"65","First Republic Bank","First Republic Bank","REPUBLIC","REPUBLIC",0
-"66","IBERIABANK","Iberiabank","IBERIA","IBERIA",0
-"67","City National Bank","City National Bank","CITY NATIONAL","CITY NATIONAL",0
-"68","City National Bank","Zions First National Bank","CITY NATIONAL","ZIONS NATIONAL",0.307692307692308
-"69","City National Bank","TCF National Bank","CITY NATIONAL","TCF NATIONAL",0.333333333333333
-"70","City National Bank","Valley National Bank","CITY NATIONAL","VALLEY NATIONAL",0.384615384615385
-"71","City National Bank","Old National Bank","CITY NATIONAL","OLD NATIONAL",0.333333333333333
-"72","Goldman Sachs Bank USA","Goldman Sachs Bank USA","GOLDMAN SACHS USA","GOLDMAN SACHS USA",0
-"73","The PrivateBank and Trust Company","The PrivateBank and Trust Company","THE PRIVATEAND ","THE PRIVATEAND ",0
-"74","State Street Bank","State Street Bank and Trust Company","STATE STREET","STATE STREET",0
-"75","The Northern Trust Company","The Northern Trust Company","THE NORTHERN ","THE NORTHERN ",0
-"76","Rabobank","Rabobank","RABO","RABO",0
-"77","ConServe","Commerce Bank","CONSERVE","COMMERCE",0.375
-"78","FirstBank of Puerto Rico","First-Citizens Bank & Trust Company","FIRSTOF","FIRST- ",0.285714285714286
-"79","FirstBank of Puerto Rico","Firstbank of Puerto Rico","FIRSTOF","FIRSTOF",0
-"80","First National Bank of Pennsylvania","First National Bank of Pennsylvania","NATIONALPENNSYLVANIA","NATIONALPENNSYLVANIA",0
-"81","Scottrade Bank","Scottrade Bank","SCOTTRADE","SCOTTRADE",0
-"82","Old National Bank","City National Bank","OLD NATIONAL","CITY NATIONAL",0.333333333333333
-"83","Old National Bank","Zions First National Bank","OLD NATIONAL","ZIONS NATIONAL",0.333333333333333
-"84","Old National Bank","TCF National Bank","OLD NATIONAL","TCF NATIONAL",0.25
-"85","Old National Bank","Valley National Bank","OLD NATIONAL","VALLEY NATIONAL",0.416666666666667
-"86","Old National Bank","Old National Bank","OLD NATIONAL","OLD NATIONAL",0
-"87","Raymond James Bank, N. A.","Raymond James Bank","RAYMOND JAMES N A","RAYMOND JAMES",0.307692307692308
-"88","Cathay Bank","Cathay Bank","CATHAY","CATHAY",0
-"89","PACIFIC WESTERN BANK","Pacific Western Bank","PACIFIC WESTERN","PACIFIC WESTERN",0
-"90","National Financial LLC","First National Bank of Omaha","NATIONAL  LLC","NATIONALOMAHA",0.384615384615385
-"91","Park National Corporation","City National Bank","PARK NATIONAL ","CITY NATIONAL",0.384615384615385
-"92","Park National Corporation","TCF National Bank","PARK NATIONAL ","TCF NATIONAL",0.416666666666667
-"93","Park National Corporation","Old National Bank","PARK NATIONAL ","OLD NATIONAL",0.416666666666667
-"94","First Niagara Bank","First Niagara Bank","NIAGARA","NIAGARA",0
-"95","Earnest Inc.","Arvest Bank","EARNEST","ARVEST",0.333333333333333
+"19","SunTrust Banks, Inc.","Intrust Bank","SUNTRUST","INTRUST",0.285714285714286
+"20","SunTrust Banks, Inc.","Wintrust Bank","SUNTRUST","WINTRUST",0.25
+"21","BMO Harris","BMO Harris Bank","BMO HARRIS","BMO HARRIS",0
+"22","Capital One","Capital One"," ONE"," ONE",0
+"23","Capital One","Communityone Bank"," ONE","ONE",0.333333333333333
+"24","FirstMerit Bank","Firstmerit Bank","FIRSTMERIT","FIRSTMERIT",0
+"25","Fifth Third Financial Corporation","Fifth Third Bank","FIFTH THIRD  ","FIFTH THIRD",0.181818181818182
+"26","The Huntington National Bank","The Huntington National Bank","THE HUNTINGTON ","THE HUNTINGTON ",0
+"27","Union Bank","Union Bank","UNION","UNION",0
+"28","Union Bank","Union Bank and Trust Company","UNION","UNION",0
+"29","Union Bank","Union Bank & Trust","UNION","UNION ",0.2
+"30","BankUnited","BankUnited","UNITED","UNITED",0
+"31","BankUnited","United Bank","UNITED","UNITED",0
+"32","BankUnited","United Community Bank","UNITED","UNITED ",0.166666666666667
+"33","BankUnited","First United Bank and Trust Company","UNITED","UNITED",0
+"34","BankUnited","First United Bank & Trust","UNITED","UNITED ",0.166666666666667
+"35","BankUnited","UNITED BANK","UNITED","UNITED",0
+"36","Morgan Stanley","Morgan Stanley Bank","MORGAN STANLEY","MORGAN STANLEY",0
+"37","BNY Mellon","BNY Mellon","BNY MELLON","BNY MELLON",0
+"38","Astoria Bank","Astoria Bank","ASTORIA","ASTORIA",0
+"39","New York Community Bank","New York Community Bank","NEW YORK ","NEW YORK ",0
+"40","Comerica","Comerica Bank","COMERICA","COMERICA",0
+"41","USAA Savings","USAA Savings Bank","USAA SAVINGS","USAA SAVINGS",0
+"42","USAA Savings","Union Savings Bank","USAA SAVINGS","UNION SAVINGS",0.333333333333333
+"43","First National Bank of Omaha","First National Bank of Omaha"," OMAHA"," OMAHA",0
+"44","First Citizens","FirstBank","FIRST","FIRST",0
+"45","First Citizens","First Bank","FIRST","FIRST",0
+"46","First Citizens","Citizens First Bank","FIRST","FIRST",0
+"47","Discover","Discover Bank","DISCOVER","DISCOVER",0
+"48","Banco Popular de Puerto Rico","Banco Popular de Puerto Rico"," POPULAR DE"," POPULAR DE",0
+"49","Commerce Bank","Commerce Bank","COMMERCE","COMMERCE",0
+"50","Commerce Bank","Commerce Bank & Trust Company","COMMERCE","COMMERCE  ",0.25
+"51","Commerce Bank","National Bank of Commerce","COMMERCE"," COMMERCE",0.125
+"52","E*Trade Bank","E*TRADE Bank","E*TRADE","E*TRADE",0
+"53","BancorpSouth Bank","BancorpSouth Bank","RPSOUTH","RPSOUTH",0
+"54","Valley National Bank","Valley National Bank","VALLEY ","VALLEY ",0
+"55","Frost Bank","Frost Bank","FROST","FROST",0
+"56","UMB Bank","UMB Bank","UMB","UMB",0
+"57","Associated Bank","Associated Bank","ASSOCIATED","ASSOCIATED",0
+"58","FirstBank","FirstBank","FIRST","FIRST",0
+"59","FirstBank","First Bank","FIRST","FIRST",0
+"60","FirstBank","Citizens First Bank","FIRST","FIRST",0
+"61","East West Bank","East West Bank","EAST WEST","EAST WEST",0
+"62","Webster Bank","Webster Bank","WEBSTER","WEBSTER",0
+"63","First Hawaiian Bank","First Hawaiian Bank","HAWAIIAN","HAWAIIAN",0
+"64","Third Federal Savings & Loan","Astoria Federal Savings and Loan Association","THIRD FEDERAL SAVINGS  LOAN","ASTORIA FEDERAL SAVINGSLOAN ",0.333333333333333
+"65","Third Federal Savings & Loan","Yakima Federal Savings and Loan Association","THIRD FEDERAL SAVINGS  LOAN","YAKIMA FEDERAL SAVINGSLOAN ",0.296296296296296
+"66","Bank of Hawaii","Bank of Hawaii","OF HAWAII","OF HAWAII",0
+"67","Washington Federal","Washington Federal","WASHINGTON FEDERAL","WASHINGTON FEDERAL",0
+"68","Sallie Mae","Sallie Mae Bank","SALLIE MAE","SALLIE MAE",0
+"69","Whitney Bank","Whitney Bank","WHITNEY","WHITNEY",0
+"70","Charles Schwab Bank","Charles Schwab Bank","CHARLES SCHWAB","CHARLES SCHWAB",0
+"71","Synovus Bank","Synovus Bank","SYNOVUS","SYNOVUS",0
+"72","Arvest Bank","Arvest Bank","ARVEST","ARVEST",0
+"73","Banco Santander Puerto Rico","Banco Santander Puerto Rico"," SANTANDER"," SANTANDER",0
+"74","CIT Bank National Association","City National Bank","CIT  ","CITY ",0.2
+"75","Investors Bank","Investors Bank","INVESTORS","INVESTORS",0
+"76","EverBank","EverBank","EVER","EVER",0
+"77","First Credit Services Inc.","First Credit Bank","CREDIT ","CREDIT",0.166666666666667
+"78","First Republic Bank","First Republic Bank","REPUBLIC","REPUBLIC",0
+"79","First Republic Bank","Republic Bank & Trust Company","REPUBLIC","REPUBLIC  ",0.25
+"80","Security Finance","First Security Bank","SECURITY ","SECURITY",0.125
+"81","IBERIABANK","Iberiabank","IBERIA","IBERIA",0
+"82","Meridian Financial Services, Inc.","Meridian Bank","MERIDIAN  ","MERIDIAN",0.25
+"83","Trustmark Corporation","Trustmark National Bank","TRUSTMARK ","TRUSTMARK ",0
+"84","City National Bank","City National Bank","CITY ","CITY ",0
+"85","City National Bank","City Bank","CITY ","CITY",0.25
+"86","Goldman Sachs Bank USA","Goldman Sachs Bank USA","GOLDMAN SACHS USA","GOLDMAN SACHS USA",0
+"87","The PrivateBank and Trust Company","The PrivateBank and Trust Company","THE PRIVATEAND ","THE PRIVATEAND ",0
+"88","State Street Bank","State Street Bank and Trust Company","STATE STREET","STATE STREET",0
+"89","The Northern Trust Company","The Northern Trust Company","THE NORTHERN ","THE NORTHERN ",0
+"90","EZCORP, Inc.","Encore Bank","EZCORP","ENCORE",0.333333333333333
+"91","Rabobank","Rabobank","RABO","RABO",0
+"92","FirstBank of Puerto Rico","First-Citizens Bank & Trust Company","FIRSTOF","FIRST- ",0.285714285714286
+"93","FirstBank of Puerto Rico","Firstbank of Puerto Rico","FIRSTOF","FIRSTOF",0
+"94","General Financial, Inc.","Central Bank & Trust Co.","GENERAL ","CENTRAL ",0.25
+"95","First National Bank of Pennsylvania","Citizens Bank of Pennsylvania"," PENNSYLVANIA","OF PENNSYLVANIA",0.153846153846154
+"96","First National Bank of Pennsylvania","First National Bank of Pennsylvania"," PENNSYLVANIA"," PENNSYLVANIA",0
+"97","Worth Finance Corporation","North Community Bank","WORTH  ","NORTH ",0.333333333333333
+"98","Scottrade Bank","Scottrade Bank","SCOTTRADE","SCOTTRADE",0
+"99","Scottrade Bank","Scotiabank de Puerto Rico","SCOTTRADE","SCOTIADE",0.25
+"100","First Premier Financial, Inc.","First PREMIER Bank","PREMIER ","PREMIER",0.142857142857143
+"101","Atlanticus Services Corporation","Atlantic Capital Bank","ATLANTICUS  ","ATLANTIC ",0.333333333333333
+"102","Old National Bank","Old National Bank","OLD ","OLD ",0
+"103","Midwest Finance Corporation","First Midwest Bank","MIDWEST  ","MIDWEST",0.285714285714286
+"104","Midwest Finance Corporation","Bank Midwest","MIDWEST  ","MIDWEST",0.285714285714286
+"105","Midwest Finance Corporation","MidWestOne Bank","MIDWEST  ","MIDWESTONE",0.333333333333333
+"106","Raymond James Bank, N. A.","Raymond James Bank","RAYMOND JAMES N A","RAYMOND JAMES",0.307692307692308
+"107","Cathay Bank","Cathay Bank","CATHAY","CATHAY",0
+"108","Summit Financial Corp","Summit Community Bank, Inc","SUMMIT  CORP","SUMMIT  INC",0.363636363636364
+"109","Federal Financial Services, Inc.","First Federal Bank","FEDERAL  ","FEDERAL",0.285714285714286
+"110","Gold Star Finance, Inc.","Lone Star National Bank","GOLD STAR ","LONE STAR ",0.3
+"111","ZestFinance","West Bank","ZEST","WEST",0.25
+"112","PACIFIC WESTERN BANK","Pacific Western Bank","PACIFIC WESTERN","PACIFIC WESTERN",0
+"113","PACIFIC WESTERN BANK","Pacific Premier Bank","PACIFIC WESTERN","PACIFIC PREMIER",0.333333333333333
+"114","First Financial Services, Inc.","Capital Bank Corporation"," "," ",0
+"115","Peoples Financial Corporation","Peoples Bank","PEOPLES  ","PEOPLES",0.285714285714286
+"116","Peoples Financial Corporation","PeoplesBank","PEOPLES  ","PEOPLES",0.285714285714286
+"117","The Star Financial","The Park National Bank","THE STAR ","THE PARK ",0.333333333333333
+"118","The Star Financial","Lone Star National Bank","THE STAR ","LONE STAR ",0.333333333333333
+"119","AmeriNational Community Services","Ameris Bank","AMERI  ","AMERIS",0.333333333333333
+"120","State Finance Company","State Bank & Trust","STATE  ","STATE ",0.166666666666667
+"121","State Finance Company","First State Community Bank","STATE  ","STATE ",0.166666666666667
+"122","First Midwest Bancorp, Inc.","MidWestOne Bank","MIDWEST RP","MIDWESTONE",0.3
+"123","MidFirst Bank","MidFirst Bank","MIDFIRST","MIDFIRST",0
+"124","First Niagara Bank","First Niagara Bank","NIAGARA","NIAGARA",0
+"125","Chemical Financial Corporation","Chemical Bank","CHEMICAL  ","CHEMICAL",0.25
+"126","Earnest Inc.","Arvest Bank","EARNEST","ARVEST",0.333333333333333
