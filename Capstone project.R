@@ -95,20 +95,23 @@ str(all_ranked_banks2)#133880 obs
 #write.csv(all_ranked_banks2, file = "banks_ranked_by_equity_capital.csv")
 max(all_ranked_banks2$Rank) #7366
 
-maxrank<-500
+maxrank<-50
 
 all_ranked_banks2_top<-all_ranked_banks2[all_ranked_banks2$Rank<=maxrank,]
-str(all_ranked_banks2_top)#10000 obs
+str(all_ranked_banks2_top)
+head(all_ranked_banks2_top)
 
 #Extract unique bank names. Bank names will be merge keys. We want to experiment with
 #some "fuzzy" merge techniques. 
 unique_banks_from_complaints<-unique(consumer_complaints_banksOnly$Company)
 length(unique_banks_from_complaints)#1130
 unique_banks_from_complaints[1:20]
+write.csv(unique_banks_from_complaints,file="unique_banks_from_complaints.csv")
 
 unique_banks_from_ranked_banks_top<-unique(all_ranked_banks2_top$Bank.Name)
-length(unique_banks_from_ranked_banks_top)#656 banks
+length(unique_banks_from_ranked_banks_top)#67 banks
 unique_banks_from_ranked_banks_top
+write.csv(unique_banks_from_ranked_banks_top,file="top ranked banks.csv")
 
 #Create the Cartesian product of the two sets of unique bank names. When we get that 
 #done we'll find the Levenstein distances for all bank name pairs. 
@@ -201,8 +204,9 @@ library(stringdist)
 
 distances <-data.frame(bank1=character(),bank2=character(),cleanedUpBank1=character(),
                        cleanedUpBank2=character(), d=integer(),stringsAsFactors = FALSE)
-#threshold<-0.42
-threshold<-0.37
+
+threshold<-0.31
+
 for (i in 1:length(unique_banks_from_complaints)){
   for (j in 1:length(unique_banks_from_ranked_banks_top)){
 #Here we remove words from the bank names that give no information about the bank's identity. 
@@ -213,8 +217,11 @@ for (i in 1:length(unique_banks_from_complaints)){
     CleanedUpBankName1<-gsub(' BANK ',' ',CleanedUpBankName1)
     CleanedUpBankName1<-gsub('BANK ','',CleanedUpBankName1)
     CleanedUpBankName1<-gsub(' BANK','',CleanedUpBankName1)
-    
     CleanedUpBankName1<-gsub('BANK','',CleanedUpBankName1)
+    
+    CleanedUpBankName1<-gsub('SAVINGS AND LOAN','',CleanedUpBankName1)
+    CleanedUpBankName1<-gsub('SAVINGS & LOAN','',CleanedUpBankName1)
+    
     CleanedUpBankName1<-gsub(' INC.','',CleanedUpBankName1)
     CleanedUpBankName1<-gsub('COMPANY','',CleanedUpBankName1)
     CleanedUpBankName1<-gsub(' CO[.]','',CleanedUpBankName1)
@@ -251,8 +258,11 @@ for (i in 1:length(unique_banks_from_complaints)){
     CleanedUpBankName2<-gsub(' BANK ',' ',CleanedUpBankName2)
     CleanedUpBankName2<-gsub('BANK ','',CleanedUpBankName2)
     CleanedUpBankName2<-gsub(' BANK','',CleanedUpBankName2)
-    
     CleanedUpBankName2<-gsub('BANK','',CleanedUpBankName2)
+    
+    CleanedUpBankName2<-gsub('SAVINGS AND LOAN','',CleanedUpBankName2)
+    CleanedUpBankName2<-gsub('SAVINGS & LOAN','',CleanedUpBankName2)
+    
     CleanedUpBankName2<-gsub(' INC.','',CleanedUpBankName2)
     CleanedUpBankName2<-gsub('COMPANY','',CleanedUpBankName2)
     CleanedUpBankName2<-gsub(' CO[.]','',CleanedUpBankName2)
@@ -284,12 +294,10 @@ for (i in 1:length(unique_banks_from_complaints)){
     CleanedUpBankName2<-gsub('ASSOCIATION','',CleanedUpBankName2)
   #Distance between 2 bank names is defined as longest common substring distance, 
   #normalized by length of cleaned up bank name
-    if (max(nchar(CleanedUpBankName1),nchar(CleanedUpBankName2))<=3){
+    if (max(nchar(CleanedUpBankName1),nchar(CleanedUpBankName2))<=4){
      dist<-stringdist(CleanedUpBankName1,CleanedUpBankName2,method="lv")
     }
-    else if ((regexpr("AMERICA",CleanedUpBankName1)[1]>0 & regexpr("COMERICA",CleanedUpBankName2)[1]>0)|
-            (regexpr("COMERICA",CleanedUpBankName1[1]>0)& regexpr("AMERICA",CleanedUpBankName2)[1]>0)){
-      dist<-threshold+1}
+
     else {
       dist<-stringdist(CleanedUpBankName1,CleanedUpBankName2,method="lv")/min(nchar(CleanedUpBankName1),nchar(CleanedUpBankName2))
     }
@@ -303,13 +311,97 @@ for (i in 1:length(unique_banks_from_complaints)){
   }
 }
 
-write.csv(distances,file="Bank name pairs and distances.csv")
+write.csv(distances,file="Bank name pairs and distances2.csv")
+################################################################################################################################
 
 
-#take a random sample of size 50000 from a dataset mydata 
-#sample without replacement
-#consumer_complaints_samp50000 <- consumer_complaints[sample(1:nrow(consumer_complaints), 50000, replace=FALSE),]
-#write.csv(consumer_complaints_samp50000, file = "consumer_complaints_samp50000.csv")
+###########################################################################################################################################
+for (i in 1:nrow(all_ranked_banks2_top))
+{
+  if (all_ranked_banks2_top$Bank.Name[i]=='Raymond James Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Raymond James Bank, N. A.'}
+  else if (all_ranked_banks2_top$Bank.Name[i]=='Regions Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Regions Financial Corporation'}
+  else if (all_ranked_banks2_top$Bank.Name[i]=='Reliant Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Reliant Financial Corporation'}
+  else if (all_ranked_banks2_top$Bank.Name[i]=='Ally Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Ally Financial Inc.'}
+  else if (all_ranked_banks2_top$Bank.Name[i]=='Commerce Bank & Trust Company'){all_ranked_banks2_top$Bank.Name_std[i]<-'Commerce Bank'}
+  else if (all_ranked_banks2_top$Bank.Name[i]=='Meridian Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Meridian Financial Services, Inc.'}
+  else if (all_ranked_banks2_top$Bank.Name[i]=='Chemical Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Chemical Financial Corporation'}
+  else if (all_ranked_banks2_top$Bank.Name[i]=='Wells Fargo Bank, Ltd.'){all_ranked_banks2_top$Bank.Name_std[i]<-'Wells Fargo & Company'}
+  else if (all_ranked_banks2_top$Bank.Name[i]=='Wells Fargo Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Wells Fargo & Company'}
+  else if (all_ranked_banks2_top$Bank.Name[i]=='Fifth Third Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Fifth Third Financial Corporation'}
+  else if (all_ranked_banks2_top$Bank.Name[i]=='Santander Bank, N.A.'){all_ranked_banks2_top$Bank.Name_std[i]<-'Santander Bank US'}
+  else if (all_ranked_banks2_top$Bank.Name[i]=='First PREMIER Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'First Premier Financial, Inc.'}
+  else if (all_ranked_banks2_top$Bank.Name[i]=='Synchrony Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Synchrony Financial'}
+  else if (all_ranked_banks2_top$Bank.Name[i]=='JPMorgan Chase Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'JPMorgan Chase & Co.'}
+  else if (all_ranked_banks2_top$Bank.Name[i]=='Wells Fargo Financial National Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Wells Fargo & Company'}
+  else if (all_ranked_banks2_top$Bank.Name[i]=='Bank of America'){all_ranked_banks2_top$Bank.Name_std[i]<-'Bank of America'}
+  else if (all_ranked_banks2_top$Bank.Name[i]=='First Tennessee Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'First Tennessee Bank'}
+  else if (all_ranked_banks2_top$Bank.Name[i]=="'People's United Bank'"){all_ranked_banks2_top$Bank.Name_std[i]<-"'People's United Bank'"}
+else if (all_ranked_banks2_top$Bank.Name[i]=='TCF National Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'TCF National Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Citibank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Citibank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Bank of the West'){all_ranked_banks2_top$Bank.Name_std[i]<-'Bank of the West'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='SunTrust Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'SunTrust Banks, Inc.'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='BMO Harris Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'BMO Harris'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Capital One'){all_ranked_banks2_top$Bank.Name_std[i]<-'Capital One'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Firstmerit Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'FirstMerit Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='The Huntington National Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'The Huntington National Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Union Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Union Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Union Bank and Trust Company'){all_ranked_banks2_top$Bank.Name_std[i]<-'Union Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='BankUnited'){all_ranked_banks2_top$Bank.Name_std[i]<-'BankUnited'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Morgan Stanley Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Morgan Stanley'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='BNY Mellon'){all_ranked_banks2_top$Bank.Name_std[i]<-'BNY Mellon'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Astoria Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Astoria Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='New York Community Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'New York Community Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Comerica Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Comerica'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='USAA Savings Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'USAA Savings'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='First National Bank of Omaha'){all_ranked_banks2_top$Bank.Name_std[i]<-'First National Bank of Omaha'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='First Citizens Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'First Citizens'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Discover Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Discover'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Banco Popular de Puerto Rico'){all_ranked_banks2_top$Bank.Name_std[i]<-'Banco Popular de Puerto Rico'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Commerce Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Commerce Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='E*TRADE Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'E*Trade Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='BancorpSouth Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'BancorpSouth Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Valley National Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Valley National Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Frost Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Frost Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='UMB Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'UMB Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Associated Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Associated Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='FirstBank'){all_ranked_banks2_top$Bank.Name_std[i]<-'FirstBank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='First Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'FirstBank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Firstbank'){all_ranked_banks2_top$Bank.Name_std[i]<-'FirstBank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='East West Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'East West Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Webster Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Webster Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='First Hawaiian Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'First Hawaiian Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Bank of Hawaii'){all_ranked_banks2_top$Bank.Name_std[i]<-'Bank of Hawaii'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Washington Federal'){all_ranked_banks2_top$Bank.Name_std[i]<-'Washington Federal'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Sallie Mae Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Sallie Mae'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Whitney Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Whitney Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Charles Schwab Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Charles Schwab Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Synovus Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Synovus Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Banco Popular North America'){all_ranked_banks2_top$Bank.Name_std[i]<-'Banco Popular North America'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Arvest Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Arvest Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Banco Santander Puerto Rico'){all_ranked_banks2_top$Bank.Name_std[i]<-'Banco Santander Puerto Rico'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Investors Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Investors Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='EverBank'){all_ranked_banks2_top$Bank.Name_std[i]<-'EverBank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='First Republic Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'First Republic Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Iberiabank'){all_ranked_banks2_top$Bank.Name_std[i]<-'IBERIABANK'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Trustmark National Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Trustmark Corporation'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='City National Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'City National Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Goldman Sachs Bank USA'){all_ranked_banks2_top$Bank.Name_std[i]<-'Goldman Sachs Bank USA'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='The PrivateBank and Trust Company'){all_ranked_banks2_top$Bank.Name_std[i]<-'The PrivateBank and Trust Company'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='State Street Bank and Trust Company'){all_ranked_banks2_top$Bank.Name_std[i]<-'State Street Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='The Northern Trust Company'){all_ranked_banks2_top$Bank.Name_std[i]<-'The Northern Trust Company'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Rabobank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Rabobank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Firstbank of Puerto Rico'){all_ranked_banks2_top$Bank.Name_std[i]<-'FirstBank of Puerto Rico'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='First National Bank of Pennsylvania'){all_ranked_banks2_top$Bank.Name_std[i]<-'First National Bank of Pennsylvania'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Scottrade Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Scottrade Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Old National Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Old National Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Blackhawk Bank & Trust'){all_ranked_banks2_top$Bank.Name_std[i]<-'Blackhawk Finance'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Cathay Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'Cathay Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='Pacific Western Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'PACIFIC WESTERN BANK'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='MidFirst Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'MidFirst Bank'}
+else if (all_ranked_banks2_top$Bank.Name[i]=='First Niagara Bank'){all_ranked_banks2_top$Bank.Name_std[i]<-'First Niagara Bank'}
+else {all_ranked_banks2_top$Bank.Name_std[i]<-''}
+}
 
+write.csv(all_ranked_banks2_top,file="Bank names with standardized names.csv")
 
 
