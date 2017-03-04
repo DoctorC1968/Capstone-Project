@@ -199,6 +199,10 @@ all_RankedBanksByNumBranch2<-subset(all_RankedBanksByNumBranch,select=-Date)
 rm(all_RankedBanksByNumBranch)
 
 ###########################################################################################################################################
+# Here we standardize the bank names; that is, we 
+#    1. Take the banks that ever achieved a rank in the top 50
+#    2. Tweak those bank names to match the names of the banks in the complaints data
+###########################################################################################################################################
 for (i in 1:nrow(all_ranked_banks_top50))
 { all_ranked_banks_top50$Bank.Name_std[i]<-''
   if (all_ranked_banks_top50$Bank.Name[i]=='Ally Bank'){all_ranked_banks_top50$Bank.Name_std[i]<-'Ally Financial Inc.'}
